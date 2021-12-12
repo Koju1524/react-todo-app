@@ -1,7 +1,7 @@
-import { useState } from 'react'
-import { ADD_TODO, ALL_DELETE_TODO } from '../actions'
+import { useState } from "react";
+import { ADD_TODO, ALL_DELETE_TODO } from "../actions";
 
-const EventForm = ( { state, dispatch }) => {
+const EventForm = ({ state, dispatch }) => {
   const [title, setTitle] = useState("");
   const [complete, setComplete] = useState("");
 
@@ -19,8 +19,15 @@ const EventForm = ( { state, dispatch }) => {
 
   const allDeleteTodo = (e) => {
     e.preventDefault();
-    dispatch({ type: ALL_DELETE_TODO });
+    const confirmation = window.confirm('Are you sure you want to delete all Todos')
+    if (confirmation) {
+      dispatch({ type: ALL_DELETE_TODO });
+    }
   };
+
+  const preventEmptyForm = (title === "") | (complete === "")
+
+  const preventEmptyTodos = state.length === 0
 
   return (
     <>
@@ -40,10 +47,14 @@ const EventForm = ( { state, dispatch }) => {
         <option value="done">done</option>
       </select>
 
-      <button onClick={addTodo}>ADD</button>
-      <button onClick={allDeleteTodo}>ALL DELETE</button>
+      <button onClick={addTodo} disabled={preventEmptyForm}>
+        ADD
+      </button>
+      <button onClick={allDeleteTodo} disabled={preventEmptyTodos}>
+        ALL DELETE
+      </button>
     </>
-  )
-}
+  );
+};
 
-export default EventForm
+export default EventForm;

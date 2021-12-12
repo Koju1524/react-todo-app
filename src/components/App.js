@@ -1,6 +1,7 @@
 import { useReducer } from "react";
 import TodosReducer from "../reducers";
 import EventForm from './EventForm'
+import Event from './Event'
 
 const App = () => {
   const [state, dispatch] = useReducer(TodosReducer, []);
@@ -18,18 +19,7 @@ const App = () => {
           </tr>
         </thead>
         <tbody>
-          {state.map((todo, index) => {
-            return (
-              <tr key={index}>
-                <td>{todo.id}</td>
-                <td>{todo.title}</td>
-                <td>{todo.complete}</td>
-                <td>
-                  <button>DELETE</button>
-                </td>
-              </tr>
-            );
-          })}
+          {state.map((todo, index) => (<Event key={index} todo={todo} dispatch={dispatch} />))}
         </tbody>
       </table>
     </div>
