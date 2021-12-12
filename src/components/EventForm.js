@@ -19,15 +19,17 @@ const EventForm = ({ state, dispatch }) => {
 
   const allDeleteTodo = (e) => {
     e.preventDefault();
-    const confirmation = window.confirm('Are you sure you want to delete all Todos')
+    const confirmation = window.confirm(
+      "Are you sure you want to delete all Todos"
+    );
     if (confirmation) {
       dispatch({ type: ALL_DELETE_TODO });
     }
   };
 
-  const preventEmptyForm = (title === "") | (complete === "")
+  const preventEmptyForm = (title === "") | (complete === "");
 
-  const preventEmptyTodos = state.length === 0
+  const preventEmptyTodos = state.length === 0;
 
   return (
     <>
