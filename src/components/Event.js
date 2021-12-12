@@ -18,7 +18,7 @@ const Event = ({ todo, dispatch }) => {
       dispatch({ type: DELETE_TODO, id })
     }
   }
-  return (
+  return ( //isEditable出し分けがしたい
     <>
       <>
         <tr>
@@ -34,7 +34,7 @@ const Event = ({ todo, dispatch }) => {
         </tr>
       </>
 
-      {/* <>
+      <>
         <label htmlFor="newTitle">TITLE:</label>
         <input id="newTitle" value="newTitle"></input>
 
@@ -47,7 +47,7 @@ const Event = ({ todo, dispatch }) => {
 
         <button disabled>EDIT</button>
         <button disabled>CANCEL</button>
-      </> */}
+      </>
     </>
   )
 }
