@@ -1,14 +1,19 @@
-import { useReducer } from "react";
+import { useReducer, useState } from "react";
 import TodosReducer from "../reducers";
 import EventForm from './EventForm'
+import EventEditForm from './EventEditForm'
 import Event from './Event'
 
 const App = () => {
   const [state, dispatch] = useReducer(TodosReducer, []);
+  const [isEditable, setIsEditable] = useState(false)
 
   return (
-    <div>
-      <EventForm state={state} dispatch={dispatch} />
+    <> {!isEditable ? (
+        <EventForm state={state} dispatch={dispatch} />) : (
+          <EventEditForm setIsEditable={setIsEditable} />
+      )
+    }
 
       <table>
         <thead>
@@ -19,10 +24,12 @@ const App = () => {
           </tr>
         </thead>
         <tbody>
-          {state.map((todo, index) => (<Event key={index} todo={todo} dispatch={dispatch} />))}
+          {state.map((todo, index) => (<Event key={index} todo={todo} dispatch={dispatch} setIsEditable={setIsEditable} />))}
         </tbody>
       </table>
-    </div>
+
+    </>
+
   );
 };
 
